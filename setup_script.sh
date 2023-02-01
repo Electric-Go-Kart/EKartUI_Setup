@@ -30,3 +30,49 @@ mkdir qtbasebuild && cd qtbasebuild
 /opt/cmake/bin/cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/opt/Qt/6.2.3-aarch64 -DQT_AVOID_CMAKE_ARCHIVING_API=ON ../qtbase-everywhere-src-6.2.3
 /opt/cmake/bin/cmake --build . --parallel 4
 sudo /opt/cmake/bin/cmake --install .
+
+# Install Qt submodules
+cd ~/projects/qtsetup
+wget https://download.qt.io/official_releases/qt/6.2/6.2.3/submodules/qtshadertools-everywhere-src-6.2.3.tar.xz
+tar xvf qtshadertools-everywhere-src-6.2.3.tar.xz
+cd shadertools-everywhere-src-6.2.3
+/opt/Qt/6.2.3-aarch64/bin/qt-configure-module .
+/opt/cmake/bin/cmake --build . --parallel 4
+sudo /opt/cmake/bin/cmake --install .
+cd ~/projects/qtsetup
+wget https://download.qt.io/official_releases/qt/6.2/6.2.3/submodules/qtdeclarative-everywhere-src-6.2.3.tar.xz
+tar xvf qtdeclarative-everywhere-src-6.2.3.tar.xz
+cd qtdeclarative-everywhere-src-6.2.3
+/opt/Qt/6.2.3-aarch64/bin/qt-configure-module .
+/opt/cmake/bin/cmake --build . --parallel 4
+sudo /opt/cmake/bin/cmake --install .
+cd ~/projects/qtsetup
+wget https://download.qt.io/official_releases/qt/6.2/6.2.3/submodules/qttools-everywhere-src-6.2.3.tar.xz
+tar xvf qttools-everywhere-src-6.2.3.tar.xz
+cd qttools-everywhere-src-6.2.3.tar.xz
+/opt/Qt/6.2.3-aarch64/bin/qt-configure-module .
+/opt/cmake/bin/cmake --build . --parallel 4
+sudo /opt/cmake/bin/cmake --install .
+
+# Install PySide6
+cd ~/projects/qtsetup
+git clone --recursive https://code.qt.io/pyside/pyside-setup
+cd pyside-setup
+git checkout 6.2.3
+pip install packaging
+sudo apt install clang
+python setup.py build --qmake=/opt/Qt/6.2.3-aarch64/bin/qmake --cmake=/opt/cmake/bin/cmake --build-tests --ignore-git --parallel=4
+sudo pip install packaging
+sudo python setup.py install --qmake=/opt/Qt/6.2.3-aarch64/bin/qmake --cmake=/opt/cmake/bin/cmake --build-tests --ignore-git --parallel=4
+
+# Missing EKartUI dependency: QtQuick.Timeline
+# Temporary fix: Commenting out any calls to import QtQuick.Timeline (in 5 files: CenterPanel.qml, Speedometer.qml, Dashboard.qml, InfoPanel.qml, and ButtonPanel.qml).
+
+# start UI
+cd ~/projects
+git clone https://github.com/QuercusFelis/EKartUI
+cd EKartUI
+python Main.py
+
+
+
