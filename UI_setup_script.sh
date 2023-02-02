@@ -11,7 +11,7 @@ sudo -H pip install pipenv
 # Install libclang
 sudo apt install libclang-dev
 # Install Qt 6.2.3
-cd ~/projects/qtsetup
+cd ~/projects && mkdir qtsetup && cd qtsetup
 sudo apt update
 sudo apt install libclang-dev
 sudo apt install build-essential
