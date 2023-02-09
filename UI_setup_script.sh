@@ -35,7 +35,7 @@ sudo /opt/cmake/bin/cmake --install .
 cd ~/projects/qtsetup
 wget https://download.qt.io/official_releases/qt/6.2/6.2.3/submodules/qtshadertools-everywhere-src-6.2.3.tar.xz
 tar xvf qtshadertools-everywhere-src-6.2.3.tar.xz
-cd shadertools-everywhere-src-6.2.3
+cd qtshadertools-everywhere-src-6.2.3
 /opt/Qt/6.2.3-aarch64/bin/qt-configure-module .
 /opt/cmake/bin/cmake --build . --parallel 4
 sudo /opt/cmake/bin/cmake --install .
@@ -49,7 +49,7 @@ sudo /opt/cmake/bin/cmake --install .
 cd ~/projects/qtsetup
 wget https://download.qt.io/official_releases/qt/6.2/6.2.3/submodules/qttools-everywhere-src-6.2.3.tar.xz
 tar xvf qttools-everywhere-src-6.2.3.tar.xz
-cd qttools-everywhere-src-6.2.3.tar.xz
+cd qttools-everywhere-src-6.2.3
 /opt/Qt/6.2.3-aarch64/bin/qt-configure-module .
 /opt/cmake/bin/cmake --build . --parallel 4
 sudo /opt/cmake/bin/cmake --install .
