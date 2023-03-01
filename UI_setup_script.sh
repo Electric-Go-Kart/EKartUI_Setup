@@ -1,17 +1,34 @@
+#!/bin/bash
 # Beginning setup
 # update and upgrade
 sudo apt update && sudo apt upgrade -y
-# notify user and remove existing instances of ~/projects
-echo "NOTICE: any existing intstances of \"~/projects\" and all of its contents will first be deleted."
-read -p "Proceed with EKartUI setup? [Y/n]" YN
-case $YN in
-	[Nn]* ) 
-		echo "Canceled setup"
-		exit;;
-	* ) 
-		echo "Proceeding with setup"
-esac
-rm -rf ~/projects/
+
+# check if ~/projects already exists
+if [ -d ~/projects/ ]; then
+	# notify user and remove existing instances of ~/projects
+	echo "NOTICE: existing instance of \"~/projects\" found. For cleanliness, it is suggested to start with a clean instance of \"~/projects\""
+	read -p "Delete existing instance of \"~/projects\" and all of its contents? [Y/n]" YN0
+	case $YN0 in
+		[Nn]* ) 
+			# continue?
+			read -p "Proceed with EKartUI setup? [Y/n]" YN1
+			case $YN1 in
+				[Nn]* ) 
+					echo "Canceled setup"
+					exit;;
+				* ) 
+					echo "Proceeding with setup";;
+			esac
+			;;
+
+
+		* ) 
+			echo "Deleting \"~/projects folder\""
+			rm -rf ~/projects/
+			;;
+	esac
+fi
+
 # set project folder
 cd ~ && mkdir projects && cd projects
 # Install pipenv
