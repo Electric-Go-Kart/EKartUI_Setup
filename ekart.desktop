@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=ekart_start
-Exec=sh /home/gokart/projects/EKartUI/start_ui.sh
+Exec=sh ~/projects/EKartUI/start_ui.sh
