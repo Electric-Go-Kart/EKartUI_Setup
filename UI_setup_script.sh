@@ -68,6 +68,11 @@ sudo python setup.py install --qmake=/opt/Qt/6.2.3-aarch64/bin/qmake --cmake=/op
 # Missing EKartUI dependency: QtQuick.Timeline
 # Temporary fix: Commenting out any calls to import QtQuick.Timeline (in 5 files: CenterPanel.qml, Speedometer.qml, Dashboard.qml, InfoPanel.qml, and ButtonPanel.qml).
 
+# Set EKartUI and APD to run on boot
+wget https://raw.githubusercontent.com/Electric-Go-Kart/EKartUI_Setup/main/ekart.desktop
+mkdir ~/.config/autostart
+mv ekart.desktop ~/.config/autostart/
+
 # start UI
 cd ~/projects
 git clone https://github.com/QuercusFelis/EKartUI
