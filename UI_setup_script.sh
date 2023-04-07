@@ -70,6 +70,17 @@ sudo python setup.py install --qmake=/opt/Qt/6.2.3-aarch64/bin/qmake --cmake=/op
 
 # Set EKartUI and APD to run on boot
 wget https://raw.githubusercontent.com/Electric-Go-Kart/EKartUI_Setup/main/ekart.desktop
+TARGET_DIR="$HOME/.config/autostart"
+
+# Check if the target directory exists
+if [ -d "$TARGET_DIR" ]; then
+    # If it exists, remove the directory and its contents
+    rm -rf "$TARGET_DIR"
+    echo "The 'autostart' folder has been removed."
+else
+    # If it doesn't exist, print a message
+    echo "The 'autostart' folder does not exist."
+fi
 mkdir ~/.config/autostart
 mv ekart.desktop ~/.config/autostart/
 
